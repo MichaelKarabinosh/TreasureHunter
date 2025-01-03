@@ -12,6 +12,7 @@ public class TreasureHunter
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean foundAllTreasures;
 
     //Constructor
     /**
@@ -23,6 +24,7 @@ public class TreasureHunter
         currentTown = null;
         hunter = null;
         hardMode = false;
+        foundAllTreasures = false;
     }
 
     // starts the game; this is the only public method
@@ -98,24 +100,28 @@ public class TreasureHunter
     {
         Scanner scanner = new Scanner(System.in);
         String choice = "";
+        foundAllTreasures = checkForAllTreasure(hunter);
 
         while (!(choice.equals("X") || choice.equals("x")))
         {
-            System.out.println();
-            System.out.println(currentTown.getLatestNews());
-            System.out.println("***");
-            System.out.println(hunter);
-            System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("Give up the hunt and e(X)it.");
-            System.out.println();
-            System.out.print("What's your next move? ");
-            choice = scanner.nextLine();
-            choice = choice.toUpperCase();
-            processChoice(choice);
+            if (!foundAllTreasures) {
+                System.out.println();
+                System.out.println(currentTown.getLatestNews());
+                System.out.println("***");
+                System.out.println(hunter);
+                System.out.println(currentTown);
+                System.out.println("(B)uy something at the shop.");
+                System.out.println("(S)ell something at the shop.");
+                System.out.println("(M)ove on to a different town.");
+                System.out.println("(L)ook for trouble!");
+                System.out.println("(H)unt for Treasure!");
+                System.out.println("Give up the hunt and e(X)it.");
+                System.out.println();
+                System.out.print("What's your next move? ");
+                choice = scanner.nextLine();
+                choice = choice.toUpperCase();
+                processChoice(choice);
+            }
         }
     }
 
@@ -136,12 +142,19 @@ public class TreasureHunter
                 //This town is going away so print its news ahead of time.
                 System.out.println(currentTown.getLatestNews());
                 enterTown();
+                currentTown.setSearchedForTreasure(false);
             }
         }
         else if (choice.equals("L") || choice.equals("l"))
         {
             currentTown.lookForTrouble();
         }
+        else if (choice.equals("h") || choice.equals("H"))
+        {
+            currentTown.searchForTreasure();
+            currentTown.setSearchedForTreasure(true);
+        }
+
         else if (choice.equals("X") || choice.equals("x"))
         {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
@@ -150,5 +163,10 @@ public class TreasureHunter
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
+    }
+
+    private boolean checkForAllTreasure(Hunter hunter)
+    {
+        return (hunter.getInventory().contains("necklace") && hunter.getInventory().contains("watch") && hunter.getInventory().contains("ring"));
     }
 }
