@@ -226,7 +226,6 @@ public class Town
         else {
             printMessage = "You cannot search for another treasure until you leave and go to the next town.";
         }
-        System.out.println(printMessage);
     }
 }
 
