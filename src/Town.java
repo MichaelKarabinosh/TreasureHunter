@@ -84,6 +84,7 @@ public class Town
 
     public void enterShop(String choice)
     {
+        printMessage = "";
         shop.enter(hunter, choice);
     }
 
@@ -174,7 +175,7 @@ public class Town
 
     private int generateTreasureNum()
     {
-        return (int) (Math.random() * 3) + 1;
+        return (int) (Math.random() * 4) + 1;
     }
 
     public void setSearchedForTreasure(boolean bool)
@@ -186,10 +187,8 @@ public class Town
         printMessage = "";
         if (!searchedForTreasure) {
             int tNum = generateTreasureNum();
-            int findTreasure = (int) (Math.random() * 2);
-            if (findTreasure == 1) {
                 if (tNum == 1) {
-                    if (!hunter.hasItemInKit("necklace")) {
+                    if (!hunter.getInventory().contains("necklace")) {
                         hunter.addItem("necklace");
                         printMessage = "You find a necklace! It has been added to your inventory.";
                     }
@@ -200,7 +199,7 @@ public class Town
                 }
                 if (tNum == 2)
                 {
-                    if (!hunter.hasItemInKit("watch")) {
+                    if (!hunter.getInventory().contains("watch")) {
                         hunter.addItem("watch");
                         printMessage = "You find a watch! It has been added to your inventory.";
                     }
@@ -210,7 +209,7 @@ public class Town
                 }
                 if (tNum == 3)
                 {
-                    if (!hunter.hasItemInKit("ring")) {
+                    if (!hunter.getInventory().contains("ring")) {
                         hunter.addItem("ring");
                         printMessage = "You find a ring! It has been added to your inventory.";
                     }
@@ -218,10 +217,10 @@ public class Town
                         printMessage = "You find a ring! You already have a ring in your inventory, so you discard this one.";
                     }
                 }
-            }
-            else {
+                if (tNum == 4)
+                {
                 printMessage = "You find nothing. Better luck in the next town!";
-            }
+                }
         }
         else {
             printMessage = "You cannot search for another treasure until you leave and go to the next town.";

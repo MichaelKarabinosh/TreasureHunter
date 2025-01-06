@@ -31,16 +31,6 @@ public class Hunter
         return hunterName;
     }
 
-    public String getKit()
-    {
-        return kit;
-    }
-
-    public int getGold()
-    {
-        return gold;
-    }
-
     public void changeGold(int modifier)
     {
         gold += modifier;

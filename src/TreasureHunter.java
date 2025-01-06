@@ -13,6 +13,7 @@ public class TreasureHunter
     private Hunter hunter;
     private boolean hardMode;
     private boolean foundAllTreasures;
+    private boolean gameWon;
 
     //Constructor
     /**
@@ -25,14 +26,15 @@ public class TreasureHunter
         hunter = null;
         hardMode = false;
         foundAllTreasures = false;
+        gameWon = false;
     }
 
     // starts the game; this is the only public method
     public void play ()
     {
-        welcomePlayer();
-        enterTown();
-        showMenu();
+            welcomePlayer();
+            enterTown();
+            showMenu();
     }
 
     /**
@@ -100,29 +102,32 @@ public class TreasureHunter
     {
         Scanner scanner = new Scanner(System.in);
         String choice = "";
-        foundAllTreasures = checkForAllTreasure(hunter);
-
-        while (!(choice.equals("X") || choice.equals("x")))
-        {
-            if (!foundAllTreasures) {
-                System.out.println();
-                System.out.println(currentTown.getLatestNews());
-                System.out.println("***");
-                System.out.println(hunter);
-                System.out.println(currentTown);
-                System.out.println("(B)uy something at the shop.");
-                System.out.println("(S)ell something at the shop.");
-                System.out.println("(M)ove on to a different town.");
-                System.out.println("(L)ook for trouble!");
-                System.out.println("(H)unt for Treasure!");
-                System.out.println("Give up the hunt and e(X)it.");
-                System.out.println();
-                System.out.print("What's your next move? ");
-                choice = scanner.nextLine();
-                choice = choice.toUpperCase();
-                processChoice(choice);
-            }
+        while ((!(choice.equals("X") || choice.equals("x")))) {
+                foundAllTreasures = checkForAllTreasure(hunter);
+                if (!foundAllTreasures) {
+                    System.out.println();
+                    System.out.println(currentTown.getLatestNews());
+                    System.out.println("***");
+                    System.out.println(hunter);
+                    System.out.println(currentTown);
+                    System.out.println("(B)uy something at the shop.");
+                    System.out.println("(S)ell something at the shop.");
+                    System.out.println("(M)ove on to a different town.");
+                    System.out.println("(L)ook for trouble!");
+                    System.out.println("(H)unt for Treasure!");
+                    System.out.println("Give up the hunt and e(X)it.");
+                    System.out.println();
+                    System.out.print("What's your next move? ");
+                    choice = scanner.nextLine();
+                    choice = choice.toUpperCase();
+                    processChoice(choice);
+                }
+                else {
+                    System.out.println("Congratulations! You have found all three treasures and won the game!");
+                    break;
+                }
         }
+
     }
 
     /**
@@ -167,6 +172,6 @@ public class TreasureHunter
 
     private boolean checkForAllTreasure(Hunter hunter)
     {
-        return (hunter.getInventory().contains("necklace") && hunter.getInventory().contains("watch") && hunter.getInventory().contains("ring"));
+        return hunter.getInventory().contains("necklace") && hunter.getInventory().contains("watch") && hunter.getInventory().contains("ring");
     }
 }
