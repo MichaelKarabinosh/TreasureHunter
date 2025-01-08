@@ -13,7 +13,7 @@ public class TreasureHunter
     private Hunter hunter;
     private boolean hardMode;
     private boolean foundAllTreasures;
-    private boolean cheatMode;
+    public static boolean cheatMode;
 
     //Constructor
     /**
@@ -86,19 +86,13 @@ public class TreasureHunter
         // outside of this method, so it isn't necessary to store it as an instance
         // variable; we can leave it as a local variable
         Shop shop = new Shop(markdown);
-        if (cheatMode)
-        {
-            shop.setShopCheatMode();
-        }
+
 
         // creating the new Town -- which we need to store as an instance
         // variable in this class, since we need to access the Town
         // object in other methods of this class
         currentTown = new Town(shop, toughness);
-        if (cheatMode)
-        {
-            currentTown.setTownCheatMode();
-        }
+
 
         // calling the hunterArrives method, which takes the Hunter
         // as a parameter; note this also could have been done in the
