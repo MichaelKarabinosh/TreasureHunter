@@ -12,6 +12,7 @@ public class Shop
     private static final int MACHETE_COST = 6;
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
+    private boolean shopCheatMode;
 
     // instance variables
     private double markdown;
@@ -85,11 +86,21 @@ public class Shop
      */
     public String inventory()
     {
-        String str = "Water: " + WATER_COST + " gold\n";
-        str += "Rope: " + ROPE_COST + " gold\n";
-        str += "Machete: " + MACHETE_COST + " gold\n";
-        str += "Horse: " + HORSE_COST + " gold\n";
-        str += "Boat: " + BOAT_COST + " gold\n";
+        String str = "";
+        if (!shopCheatMode) {
+            str = "Water: " + WATER_COST + " gold\n";
+            str += "Rope: " + ROPE_COST + " gold\n";
+            str += "Machete: " + MACHETE_COST + " gold\n";
+            str += "Horse: " + HORSE_COST + " gold\n";
+            str += "Boat: " + BOAT_COST + " gold\n";
+        }
+        else {
+            str = "Water: " + 1 + " gold\n";
+            str += "Rope: " + 1 + " gold\n";
+            str += "Machete: " + 1 + " gold\n";
+            str += "Horse: " + 1 + " gold\n";
+            str += "Boat: " + 1 + " gold\n";
+        }
 
         return str;
     }
@@ -146,6 +157,11 @@ public class Shop
         }
     }
 
+    public void setShopCheatMode()
+    {
+        shopCheatMode = true;
+    }
+
     /**
      * Checks the item entered against the costs listed in the static variables.
      *
@@ -154,6 +170,10 @@ public class Shop
      */
     public int getCostOfItem(String item)
     {
+        if (shopCheatMode)
+        {
+            return 1;
+        }
         if (item.equals("Water"))
         {
             return WATER_COST;
