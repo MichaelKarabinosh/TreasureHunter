@@ -11,6 +11,7 @@ public class Town
     private String printMessage;
     private boolean toughTown;
     private boolean searchedForTreasure;
+    private boolean cheatMode;
 
 
     //Constructor
@@ -104,6 +105,10 @@ public class Town
         {
             noTroubleChance = 0.33;
         }
+        if (cheatMode)
+        {
+            noTroubleChance = 1;
+        }
 
         if (Math.random() > noTroubleChance)
         {
@@ -113,6 +118,11 @@ public class Town
         {
             printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
             int goldDiff = (int)(Math.random() * 10) + 1;
+            if (cheatMode)
+            {
+                goldDiff = 100;
+                noTroubleChance = 0.00;
+            }
             if (Math.random() > noTroubleChance)
             {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
@@ -171,6 +181,11 @@ public class Town
     {
         double rand = Math.random();
         return (rand < 0.5);
+    }
+
+    public void setCheatMode()
+    {
+        cheatMode =  true;
     }
 
     private int generateTreasureNum()
