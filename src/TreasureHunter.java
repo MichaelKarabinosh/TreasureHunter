@@ -131,7 +131,7 @@ public class TreasureHunter
                     processChoice(choice);
                 }
                 else {
-
+                    System.out.println(currentTown.getLatestNews());
                     System.out.println("Congratulations! You have found all three treasures and won the game!");
                     break;
                 }
