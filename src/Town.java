@@ -194,15 +194,16 @@ public class Town
 
     public void searchForTreasure() {
         printMessage = "";
+        String printMessage1 = "";
         if (!searchedForTreasure) {
             int tNum = generateTreasureNum();
                 if (tNum == 1) {
                     if (!hunter.getInventory().contains("necklace")) {
                         hunter.addItem("necklace");
-                        printMessage = "You find a necklace! It has been added to your inventory.";
+                        printMessage1 = "You find a necklace! It has been added to your inventory.";
                     }
                     else {
-                        printMessage = "You find a necklace! You already have a necklace in your inventory, so you discard this one.";
+                        printMessage1 = "You find a necklace! You already have a necklace in your inventory, so you discard this one.";
                     }
 
                 }
@@ -210,30 +211,31 @@ public class Town
                 {
                     if (!hunter.getInventory().contains("watch")) {
                         hunter.addItem("watch");
-                        printMessage = "You find a watch! It has been added to your inventory.";
+                        printMessage1 = "You find a watch! It has been added to your inventory.";
                     }
                     else {
-                        printMessage = "You find a watch! You already have a watch in your inventory, so you discard this one.";
+                        printMessage1 = "You find a watch! You already have a watch in your inventory, so you discard this one.";
                     }
                 }
                 if (tNum == 3)
                 {
                     if (!hunter.getInventory().contains("ring")) {
                         hunter.addItem("ring");
-                        printMessage = "You find a ring! It has been added to your inventory.";
+                        printMessage1 = "You find a ring! It has been added to your inventory.";
                     }
                     else {
-                        printMessage = "You find a ring! You already have a ring in your inventory, so you discard this one.";
+                        printMessage1 = "You find a ring! You already have a ring in your inventory, so you discard this one.";
                     }
                 }
                 if (tNum == 4)
                 {
-                printMessage = "You find nothing. Better luck in the next town!";
+                printMessage1 = "You find nothing. Better luck in the next town!";
                 }
         }
         else {
-            printMessage = "You cannot search for another treasure until you leave and go to the next town.";
+            printMessage1 = "You cannot search for another treasure until you leave and go to the next town.";
         }
+        System.out.println(printMessage1);
     }
 }
 
