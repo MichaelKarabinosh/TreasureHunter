@@ -13,6 +13,7 @@ public class Hunter
     private String hunterName;
     private String kit;
     private int gold;
+    private int luckNum;
 
     //Constructor
     /**
@@ -25,6 +26,7 @@ public class Hunter
         this.hunterName = hunterName;
         kit = "";
         gold = startingGold;
+        luckNum = 0;
     }
 
     //Accessors
@@ -81,6 +83,12 @@ public class Hunter
         removeItemFromKit(item);
         return true;
     }
+
+    public boolean hunterHasGold(int x)
+    {
+        return gold > x;
+    }
+
 
     /**
      *  Removes an item from the kit.
@@ -174,12 +182,12 @@ public class Hunter
     {
 
         String str = hunterName + " has " + gold + " gold";
+        String str += " and a luck value of " + luckNum;
         String [] items = getInventory().split(" ");
         if (kit.isEmpty())
         {
             return str;
         }
-        System.out.println(Arrays.toString(items));
         for (int i = 0; i < items.length; i++) {
                     str += " and " + items[i];
             }

@@ -123,6 +123,7 @@ public class TreasureHunter
                     System.out.println("(M)ove on to a different town.");
                     System.out.println("(L)ook for trouble!");
                     System.out.println("(H)unt for Treasure!");
+                    System.out.println("(C)asino");
                     System.out.println("Give up the hunt and e(X)it.");
                     System.out.println();
                     System.out.print("What's your next move? ");
@@ -145,11 +146,12 @@ public class TreasureHunter
      */
     private void processChoice(String choice)
     {
-        if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s"))
+        choice = choice.toLowerCase();
+        if ( choice.equals("b") ||  choice.equals("s"))
         {
             currentTown.enterShop(choice);
         }
-        else if (choice.equals("M") || choice.equals("m"))
+        else if (choice.equals("m"))
         {
             if (currentTown.leaveTown())
             {
@@ -159,17 +161,20 @@ public class TreasureHunter
                 currentTown.setSearchedForTreasure(false);
             }
         }
-        else if (choice.equals("L") || choice.equals("l"))
+        else if (choice.equals("l"))
         {
             currentTown.lookForTrouble();
         }
-        else if (choice.equals("h") || choice.equals("H"))
+        else if (choice.equals("h"))
         {
             currentTown.searchForTreasure();
             currentTown.setSearchedForTreasure(true);
         }
-
-        else if (choice.equals("X") || choice.equals("x"))
+        else if (choice.equals("c"))
+        {
+            currentTown.luckyDice(hunter);
+        }
+        else if (choice.equals("x"))
         {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
         }

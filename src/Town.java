@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all of the things a Hunter can do in town.
@@ -233,6 +235,49 @@ public class Town
         }
         else {
             printMessage = "You cannot search for another treasure until you leave and go to the next town.";
+        }
+    }
+
+    public void luckyDice(Hunter hunter)
+    {
+        printMessage = "";
+        if (!hunter.hunterHasGold(0))
+        {
+            System.out.println("You do not have any gold");
+        }
+        else {
+            Scanner s = new Scanner(System.in);
+            System.out.print("How much gold do you want to wager? ");
+            String input = s.nextLine();
+            int inputNum = Integer.parseInt(input);
+            if (hunter.hunterHasGold(inputNum - 1))
+            {
+                hunter.changeGold(-inputNum);
+                System.out.println("Pick a random number between 1 and 12.");
+                int userDNum = Integer.parseInt(s.nextLine());
+                int dice1 = (int)(Math.random() * 6) + 1;
+                int dice2 = (int)(Math.random() * 6) + 1;
+                int diceTotal = dice1 + dice2;
+                if (userDNum == diceTotal)
+                {
+                    System.out.println("The number was " + diceTotal + ".");
+                    System.out.println("Since you got the number spot on, you win " + inputNum * 2 + " gold!");
+                    hunter.changeGold(inputNum * 2);
+                }
+                else if (diceTotal <= userDNum + 2 && diceTotal >= userDNum - 2)
+                {
+                    System.out.println("The number was " + diceTotal + ".");
+                    System.out.println("Since you were within 2 of the number, you get your gold back!");
+                    hunter.changeGold(inputNum);
+                }
+                else {
+                    System.out.println("The number was " + diceTotal + ".");
+                    System.out.println("Since you were more than within 2 of the number, you lose your gold!");
+                }
+            }
+            else {
+                System.out.println("You cannot wager more than you have!");
+            }
         }
     }
 }
