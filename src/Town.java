@@ -197,8 +197,8 @@ public class Town
         if (!searchedForTreasure) {
             int tNum = generateTreasureNum();
                 if (tNum == 1) {
-                    if (!hunter.getInventory().contains("necklace")) {
-                        hunter.addItem("necklace");
+                    if (!hunter.getInventory().contains("Necklace")) {
+                        hunter.addItem("Necklace");
                         printMessage = "You find a necklace! It has been added to your inventory.";
                     }
                     else {
@@ -208,8 +208,8 @@ public class Town
                 }
                 if (tNum == 2)
                 {
-                    if (!hunter.getInventory().contains("watch")) {
-                        hunter.addItem("watch");
+                    if (!hunter.getInventory().contains("Watch")) {
+                        hunter.addItem("Watch");
                         printMessage = "You find a watch! It has been added to your inventory.";
                     }
                     else {
@@ -218,8 +218,8 @@ public class Town
                 }
                 if (tNum == 3)
                 {
-                    if (!hunter.getInventory().contains("ring")) {
-                        hunter.addItem("ring");
+                    if (!hunter.getInventory().contains("Ring")) {
+                        hunter.addItem("Ring");
                         printMessage = "You find a ring! It has been added to your inventory.";
                     }
                     else {

@@ -181,6 +181,6 @@ public class TreasureHunter
 
     private boolean checkForAllTreasure(Hunter hunter)
     {
-        return hunter.getInventory().contains("necklace") && hunter.getInventory().contains("watch") && hunter.getInventory().contains("ring");
+        return hunter.getInventory().contains("Necklace") && hunter.getInventory().contains("Watch") && hunter.getInventory().contains("Ring");
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Hunter Class<br /><br />
  * This class represents the treasure hunter character (the player) in the Treasure Hunt game.
@@ -170,11 +172,17 @@ public class Hunter
      */
     public String toString()
     {
+
         String str = hunterName + " has " + gold + " gold";
-        if (!kit.equals(""))
+        String [] items = getInventory().split(" ");
+        if (kit.isEmpty())
         {
-            str += " and " + getInventory();
+            return str;
         }
+        System.out.println(Arrays.toString(items));
+        for (int i = 0; i < items.length; i++) {
+                    str += " and " + items[i];
+            }
         return str;
     }
 }
