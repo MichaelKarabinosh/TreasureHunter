@@ -175,6 +175,11 @@ public class Hunter
         return printableKit;
     }
 
+    public void changeLuckNum(int l)
+    {
+        luckNum += l;
+    }
+
     /**
      * @return A string representation of the hunter.
      */
@@ -182,14 +187,14 @@ public class Hunter
     {
 
         String str = hunterName + " has " + gold + " gold";
-        String str += " and a luck value of " + luckNum;
+        str += " and a luck value of " + luckNum;
         String [] items = getInventory().split(" ");
         if (kit.isEmpty())
         {
             return str;
         }
         for (int i = 0; i < items.length; i++) {
-                    str += " and " + items[i];
+                    str += " and a " + items[i];
             }
         return str;
     }

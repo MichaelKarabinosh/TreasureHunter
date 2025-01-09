@@ -13,6 +13,7 @@ public class Town
     private String printMessage;
     private boolean toughTown;
     private boolean searchedForTreasure;
+    private int goldWon;
 
 
     //Constructor
@@ -260,8 +261,13 @@ public class Town
                 int diceTotal = dice1 + dice2;
                 if (userDNum == diceTotal)
                 {
+                    goldWon = inputNum * 2;
                     System.out.println("The number was " + diceTotal + ".");
                     System.out.println("Since you got the number spot on, you win " + inputNum * 2 + " gold!");
+                    if (goldWon >= 10) {
+                        hunter.changeLuckNum(((inputNum * 2) % 10) * 2);
+                        goldWon = 0;
+                    }
                     hunter.changeGold(inputNum * 2);
                 }
                 else if (diceTotal <= userDNum + 2 && diceTotal >= userDNum - 2)
@@ -271,7 +277,12 @@ public class Town
                     hunter.changeGold(inputNum);
                 }
                 else {
+                    goldWon = -inputNum;
                     System.out.println("The number was " + diceTotal + ".");
+                    if (goldWon <= -10) {
+                        hunter.changeLuckNum(-(inputNum % 10) * 2);
+                        goldWon = 0;
+                    }
                     System.out.println("Since you were more than within 2 of the number, you lose your gold!");
                 }
             }
