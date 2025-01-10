@@ -185,11 +185,6 @@ public class Town
         return (rand < 0.5);
     }
 
-    private int generateTreasureNum()
-    {
-        return (int) (Math.random() * 4) + 1;
-    }
-
     public void setSearchedForTreasure(boolean bool)
     {
         searchedForTreasure = bool;
@@ -198,46 +193,76 @@ public class Town
     public void searchForTreasure() {
         printMessage = "";
         if (!searchedForTreasure) {
-            int tNum = generateTreasureNum();
-                if (tNum == 1) {
+            int tNum = (int) (Math.random() * 100) + 1;
+            if (tNum <= 25 - hunter.getLuckNum()) {
+                printMessage = "You find nothing. Better luck in the next town!";
+            }
+            else {
+                int whichTreasure = (int) (Math.random() * 3) + 1;
+                if (whichTreasure == 1) {
                     if (!hunter.getInventory().contains("Necklace")) {
                         hunter.addItem("Necklace");
                         printMessage = "You find a necklace! It has been added to your inventory.";
-                    }
-                    else {
+                    } else {
                         printMessage = "You find a necklace! You already have a necklace in your inventory, so you discard this one.";
                     }
-
                 }
-                if (tNum == 2)
-                {
+                if (whichTreasure == 2) {
                     if (!hunter.getInventory().contains("Watch")) {
                         hunter.addItem("Watch");
                         printMessage = "You find a watch! It has been added to your inventory.";
-                    }
-                    else {
+                    } else {
                         printMessage = "You find a watch! You already have a watch in your inventory, so you discard this one.";
                     }
                 }
-                if (tNum == 3)
-                {
+                if (whichTreasure == 3) {
                     if (!hunter.getInventory().contains("Ring")) {
                         hunter.addItem("Ring");
                         printMessage = "You find a ring! It has been added to your inventory.";
-                    }
-                    else {
+                    } else {
                         printMessage = "You find a ring! You already have a ring in your inventory, so you discard this one.";
                     }
                 }
-                if (tNum == 4)
-                {
-                printMessage = "You find nothing. Better luck in the next town!";
-                }
+            }
         }
         else {
             printMessage = "You cannot search for another treasure until you leave and go to the next town.";
         }
     }
+
+    public void searchForTreasureTest() {
+        int foundNun = 0;
+        int foundN = 0;
+        int foundW = 0;
+        int foundR = 0;
+        for (int i = 0; i < 100; i++) {
+            int tNum = (int) (Math.random() * 100) + 1;
+            if (tNum <= 25 - hunter.getLuckNum()) {
+                foundNun++;
+            }
+            else {
+                int whichT = (int) (Math.random() * 3) + 1;
+                if (whichT == 1)
+                {
+                    foundW++;
+                }
+                if (whichT == 2)
+                {
+                    foundN++;
+                }
+                if (whichT == 3)
+                {
+                    foundR++;
+                }
+            }
+        }
+        System.out.println("Nothing found: " + foundNun);
+        System.out.println("Necklace found: " + foundN);
+        System.out.println("Watch found: " + foundW);
+        System.out.println("Ring found: " + foundR );
+        System.out.println("Luck number:" + hunter.getLuckNum());
+    }
+
 
     public void luckyDice(Hunter hunter)
     {
@@ -261,11 +286,11 @@ public class Town
                 int diceTotal = dice1 + dice2;
                 if (userDNum == diceTotal)
                 {
-                    goldWon = inputNum * 2;
+                    goldWon += inputNum * 2;
                     System.out.println("The number was " + diceTotal + ".");
                     System.out.println("Since you got the number spot on, you win " + inputNum * 2 + " gold!");
                     if (goldWon >= 10) {
-                        hunter.changeLuckNum(((inputNum * 2) / 10) * 2);
+                        hunter.changeLuckNum(((goldWon * 2) / 10));
                         goldWon = 0;
                     }
                     hunter.changeGold(inputNum * 2);
@@ -277,10 +302,10 @@ public class Town
                     hunter.changeGold(inputNum);
                 }
                 else {
-                    goldWon = -inputNum;
+                    goldWon += -inputNum;
                     System.out.println("The number was " + diceTotal + ".");
                     if (goldWon <= -10) {
-                        hunter.changeLuckNum(-(inputNum / 10) * 2);
+                        hunter.changeLuckNum((goldWon / 10) * 2);
                         goldWon = 0;
                     }
                     System.out.println("Since you were more than within 2 of the number, you lose your gold!");

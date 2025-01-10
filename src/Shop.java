@@ -2,16 +2,17 @@
  * The Shop class controls the cost of the items in the Treasure Hunt game.<p>
  * The Shop class also acts as a go between for the Hunter's buyItem() method.<p>
  */
+import java.awt.color.ICC_ColorSpace;
 import java.util.Scanner;
 
 public class Shop
 {
     // constants
-    private static final int WATER_COST = 2;
-    private static final int ROPE_COST = 4;
-    private static final int MACHETE_COST = 6;
-    private static final int HORSE_COST = 12;
-    private static final int BOAT_COST = 20;
+    private static int WATER_COST = 2;
+    private static int ROPE_COST = 4;
+    private static  int MACHETE_COST = 6;
+    private static  int HORSE_COST = 12;
+    private static int BOAT_COST = 20;
 
     // instance variables
     private double markdown;
@@ -22,6 +23,14 @@ public class Shop
     {
         this.markdown = markdown;
         customer = null;
+        if (TreasureHunter.cheatMode)
+        {
+            WATER_COST = 1;
+            ROPE_COST = 1;
+            MACHETE_COST = 1;
+            HORSE_COST = 1;
+            BOAT_COST = 1;
+        }
     }
 
     /** method for entering the shop
@@ -86,23 +95,15 @@ public class Shop
     public String inventory()
     {
         String str = "";
-        if (!TreasureHunter.cheatMode) {
             str = "Water: " + WATER_COST + " gold\n";
             str += "Rope: " + ROPE_COST + " gold\n";
             str += "Machete: " + MACHETE_COST + " gold\n";
             str += "Horse: " + HORSE_COST + " gold\n";
             str += "Boat: " + BOAT_COST + " gold\n";
-        }
-        else {
-            str = "Water: " + 1 + " gold\n";
-            str += "Rope: " + 1 + " gold\n";
-            str += "Machete: " + 1 + " gold\n";
-            str += "Horse: " + 1 + " gold\n";
-            str += "Boat: " + 1 + " gold\n";
-        }
-
-        return str;
+            return str;
     }
+
+
 
     /**
      * A method that lets the customer (a Hunter) buy an item.
@@ -166,10 +167,6 @@ public class Shop
      */
     public int getCostOfItem(String item)
     {
-        if (TreasureHunter.cheatMode)
-        {
-            return 1;
-        }
         if (item.equals("Water"))
         {
             return WATER_COST;

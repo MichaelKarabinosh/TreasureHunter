@@ -180,6 +180,11 @@ public class Hunter
         luckNum += l;
     }
 
+    public int getLuckNum()
+    {
+        return luckNum;
+    }
+
     /**
      * @return A string representation of the hunter.
      */

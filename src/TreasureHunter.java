@@ -170,6 +170,10 @@ public class TreasureHunter
             currentTown.searchForTreasure();
             currentTown.setSearchedForTreasure(true);
         }
+        else if (choice.equals("hh"))
+        {
+            currentTown.searchForTreasureTest();
+        }
         else if (choice.equals("c"))
         {
             currentTown.luckyDice(hunter);
