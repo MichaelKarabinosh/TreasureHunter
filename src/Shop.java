@@ -69,7 +69,7 @@ public class Shop
         else
         {
             System.out.println("What're you lookin' to sell? ");
-            System.out.print("You currently have the following items: " + customer.getInventory());
+            System.out.println("You currently have the following items: " + customer.getInventory());
             String itemChar = scanner.nextLine();
             String item = itemMapper(itemChar);
             int cost = checkMarketPrice(item, false);
@@ -108,23 +108,23 @@ public class Shop
     private String itemMapper(String x)
     {
         x = x.toLowerCase();
-        if (x.equals("w"))
+        if (x.equals("w") || x.equals("water"))
         {
             return "Water";
         }
-        if (x.equals("r"))
+        if (x.equals("r") || x.equals("rope"))
         {
             return "Rope";
         }
-        if (x.equals("m"))
+        if (x.equals("m") || x.equals("machete"))
         {
             return "Machete";
         }
-        if (x.equals("h"))
+        if (x.equals("h") || x.equals("horse"))
         {
             return "Horse";
         }
-        if (x.equals("b"))
+        if (x.equals("b") || x.equals("boat"))
         {
             return "Boat";
         }
@@ -143,11 +143,11 @@ public class Shop
         int costOfItem = checkMarketPrice(item, true);
         if (customer.buyItem(item, costOfItem))
         {
-            System.out.println("Ye' got yerself a " + item + ". Come again soon.");
+            System.out.print("Ye' got yerself a " + item + ". Come again soon.");
         }
         else
         {
-            System.out.println("Hmm, either you don't have enough gold or you've already got one of those!");
+            System.out.print("Hmm, either you don't have enough gold or you've already got one of those!");
         }
     }
 
@@ -160,11 +160,11 @@ public class Shop
         int buyBackPrice = checkMarketPrice(item, false);
         if (customer.sellItem(item, buyBackPrice))
         {
-            System.out.println("Pleasure doin' business with you.");
+            System.out.print("Pleasure doin' business with you.");
         }
         else
         {
-            System.out.println("Stop stringin' me along!");
+            System.out.print("Stop stringin' me along!");
         }
     }
 
