@@ -70,7 +70,8 @@ public class Shop
         {
             System.out.println("What're you lookin' to sell? ");
             System.out.print("You currently have the following items: " + customer.getInventory());
-            String item = scanner.nextLine();
+            String itemChar = scanner.nextLine();
+            String item = itemMapper(itemChar);
             int cost = checkMarketPrice(item, false);
             if (cost == 0)
             {
@@ -230,7 +231,15 @@ public class Shop
      */
     public int getBuyBackCost(String item)
     {
-        int cost = (int)(getCostOfItem(item) * markdown);
+        int cost;
+        if (!TreasureHunter.cheatMode) {
+            cost = (int) (getCostOfItem(item) * markdown);
+            if (cost == 0)
+            {
+                cost = 1;
+            }
+        }
+        else cost = 100;
         return cost;
     }
 }
