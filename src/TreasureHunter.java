@@ -113,9 +113,8 @@ public class TreasureHunter
         while ((!(choice.equals("X") || choice.equals("x")))) {
                 foundAllTreasures = checkForAllTreasure(hunter);
                 if (!foundAllTreasures) {
-                    System.out.println();
                     System.out.println(currentTown.getLatestNews());
-                    System.out.println("***");
+                    System.out.println("************************************************************");
                     System.out.println(hunter);
                     System.out.println(currentTown);
                     System.out.println("(B)uy something at the shop.");
@@ -125,6 +124,7 @@ public class TreasureHunter
                     System.out.println("(H)unt for Treasure!");
                     System.out.println("(C)asino");
                     System.out.println("Give up the hunt and e(X)it.");
+                    System.out.println("************************************************************");
                     System.out.println();
                     System.out.print("What's your next move? ");
                     choice = scanner.nextLine();

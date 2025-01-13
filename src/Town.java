@@ -288,7 +288,7 @@ public class Town
                 {
                     goldWon += inputNum * 2;
                     System.out.println("The number was " + diceTotal + ".");
-                    System.out.println("Since you got the number spot on, you win " + inputNum * 2 + " gold!");
+                    System.out.print("Since you got the number spot on, you win " + inputNum * 2 + " gold!");
                     if (goldWon >= 10) {
                         hunter.changeLuckNum(((goldWon * 2) / 10));
                         goldWon = 0;
@@ -298,7 +298,7 @@ public class Town
                 else if (diceTotal <= userDNum + 2 && diceTotal >= userDNum - 2)
                 {
                     System.out.println("The number was " + diceTotal + ".");
-                    System.out.println("Since you were within 2 of the number, you get your gold back!");
+                    System.out.print("Since you were within 2 of the number, you get your gold back!");
                     hunter.changeGold(inputNum);
                 }
                 else {
@@ -308,11 +308,11 @@ public class Town
                         hunter.changeLuckNum((goldWon / 10) * 2);
                         goldWon = 0;
                     }
-                    System.out.println("Since you were more than within 2 of the number, you lose your gold!");
+                    System.out.print("Since you were more than within 2 of the number, you lose your gold!");
                 }
             }
             else {
-                System.out.println("You cannot wager more than you have!");
+                System.out.print("You cannot wager more than you have!");
             }
         }
     }
