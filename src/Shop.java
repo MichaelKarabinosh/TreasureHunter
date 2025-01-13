@@ -48,7 +48,8 @@ public class Shop
             System.out.println("Currently we have the following items:");
             System.out.println(inventory());
             System.out.print("What're you lookin' to buy? ");
-            String item = scanner.nextLine();
+            String itemChar = scanner.nextLine();
+            String item = itemMapper(itemChar);
             int cost = checkMarketPrice(item, true);
             if (cost == 0)
             {
@@ -102,6 +103,33 @@ public class Shop
             str += "(B)oat: " + BOAT_COST + " gold\n";
             return str;
     }
+
+    private String itemMapper(String x)
+    {
+        x = x.toLowerCase();
+        if (x.equals("w"))
+        {
+            return "Water";
+        }
+        if (x.equals("r"))
+        {
+            return "Rope";
+        }
+        if (x.equals("m"))
+        {
+            return "Machete";
+        }
+        if (x.equals("h"))
+        {
+            return "Horse";
+        }
+        if (x.equals("b"))
+        {
+            return "Boat";
+        }
+        else return x;
+    }
+
 
 
 
@@ -168,23 +196,23 @@ public class Shop
     public int getCostOfItem(String item)
     {
         item = item.toLowerCase();
-        if (item.equals("water") || item.equals("w"))
+        if (item.equals("water"))
         {
             return WATER_COST;
         }
-        else if (item.equals("rope") || item.equals("r"))
+        else if (item.equals("rope"))
         {
             return ROPE_COST;
         }
-        else if (item.equals("machete") || item.equals("m"))
+        else if (item.equals("machete"))
         {
             return MACHETE_COST;
         }
-        else if (item.equals("horse") || item.equals("h"))
+        else if (item.equals("horse"))
         {
             return HORSE_COST;
         }
-        else if (item.equals("boat") || item.equals("b"))
+        else if (item.equals("boat"))
         {
             return BOAT_COST;
         }
