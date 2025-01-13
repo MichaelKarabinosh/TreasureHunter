@@ -14,6 +14,8 @@ public class TreasureHunter
     private boolean hardMode;
     private boolean foundAllTreasures;
     public static boolean cheatMode;
+    private boolean easyMode;
+    private boolean goldMulti;
 
     //Constructor
     /**
@@ -25,6 +27,7 @@ public class TreasureHunter
         currentTown = null;
         hunter = null;
         hardMode = false;
+        easyMode = false;
         foundAllTreasures = false;
         cheatMode = false;
     }
@@ -52,16 +55,21 @@ public class TreasureHunter
         // set hunter instance variable
         hunter = new Hunter(name, 10);
 
-        System.out.print("Hard mode? (y/n): ");
+        System.out.print("Easy, normal, or hard mode? (e/n/h): ");
         String hard = scanner.nextLine();
+        hard = hard.toLowerCase();
         if (hard.equals(","))
         {
             cheatMode = true;
             System.out.println("CHEAT MODE HAS BEEN ACTIVATED");
         }
-        if (hard.equals("y") || hard.equals("Y"))
+        if (hard.equals("h"))
         {
             hardMode = true;
+        }
+        if (hard.equals("e"))
+        {
+            easyMode = true;
         }
     }
 
@@ -70,15 +78,20 @@ public class TreasureHunter
      */
     private void enterTown()
     {
-        double markdown = 0.25;
+        double markdown = 0.5;
         double toughness = 0.4;
         if (hardMode)
         {
             // in hard mode, you get less money back when you sell items
-            markdown = 0.5;
+            markdown = 0.25;
 
             // and the town is "tougher"
             toughness = 0.75;
+        }
+        if (easyMode)
+        {
+            markdown = 0.75;
+            toughness = 0.1;
         }
 
 
@@ -125,7 +138,6 @@ public class TreasureHunter
                     System.out.println("(C)asino");
                     System.out.println("Give up the hunt and e(X)it.");
                     System.out.println("************************************************************");
-                    System.out.println();
                     System.out.print("What's your next move? ");
                     choice = scanner.nextLine();
                     choice = choice.toUpperCase();

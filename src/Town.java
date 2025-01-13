@@ -125,6 +125,7 @@ public class Town
                 goldDiff = 100;
                 noTroubleChance = 0.00;
             }
+
             if (Math.random() > noTroubleChance)
             {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
