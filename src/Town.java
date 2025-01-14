@@ -151,9 +151,14 @@ public class Town
     }
     public void lookForTroubleTest()
     {
+        int brawlsWon = 0;
         for (int i = 0; i < 100; i++)
         {
-
+            lookForTrouble();
+            if (printMessage.contains("mettle"))
+            {
+                brawlsWon++;
+        }
         }
     }
 

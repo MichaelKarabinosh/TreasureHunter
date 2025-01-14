@@ -189,6 +189,10 @@ public class TreasureHunter
         {
             currentTown.searchForTreasureTest();
         }
+        else if (choice.equals("ll"))
+        {
+            currentTown.lookForTroubleTest();
+        }
         else if (choice.equals("c"))
         {
             currentTown.luckyDice(hunter);
