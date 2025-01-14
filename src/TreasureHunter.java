@@ -14,8 +14,8 @@ public class TreasureHunter
     private boolean hardMode;
     private boolean foundAllTreasures;
     public static boolean cheatMode;
-    private boolean easyMode;
-    private boolean goldMulti;
+    public static boolean easyMode;
+    public static double goldMulti;
 
     //Constructor
     /**
@@ -30,6 +30,7 @@ public class TreasureHunter
         easyMode = false;
         foundAllTreasures = false;
         cheatMode = false;
+        goldMulti = 1;
     }
 
     // starts the game; this is the only public method
@@ -55,7 +56,7 @@ public class TreasureHunter
         // set hunter instance variable
         hunter = new Hunter(name, 10);
 
-        System.out.print("Easy, normal, or hard mode? (e/n/h): ");
+        System.out.print("Easy or hard mode? (e/h): ");
         String hard = scanner.nextLine();
         hard = hard.toLowerCase();
         if (hard.equals(","))
@@ -66,10 +67,12 @@ public class TreasureHunter
         if (hard.equals("h"))
         {
             hardMode = true;
+            goldMulti = 0.5;
         }
         if (hard.equals("e"))
         {
             easyMode = true;
+            goldMulti = 2;
         }
     }
 
@@ -86,12 +89,12 @@ public class TreasureHunter
             markdown = 0.25;
 
             // and the town is "tougher"
-            toughness = 0.75;
+            toughness = 1;
         }
         if (easyMode)
         {
-            markdown = 0.75;
-            toughness = 0.1;
+            markdown = 1;
+            toughness = 0.0;
         }
 
 

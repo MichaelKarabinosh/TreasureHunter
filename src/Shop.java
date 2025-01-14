@@ -31,6 +31,14 @@ public class Shop
             HORSE_COST = 1;
             BOAT_COST = 1;
         }
+        if (TreasureHunter.easyMode)
+        {
+            WATER_COST /= 2;
+            ROPE_COST /= 2;
+            MACHETE_COST /= 2;
+            HORSE_COST /= 2;
+            BOAT_COST /= 2;
+        }
     }
 
     /** method for entering the shop

@@ -107,7 +107,7 @@ public class Town
         {
             noTroubleChance = 0.33;
         }
-        if (TreasureHunter.cheatMode)
+        if (TreasureHunter.cheatMode || TreasureHunter.easyMode)
         {
             noTroubleChance = 1;
         }
@@ -118,8 +118,17 @@ public class Town
         }
         else
         {
+            noTroubleChance = 0.5;
+            if (toughTown)
+            {
+                noTroubleChance = 0.66;
+            }
+            if (TreasureHunter.easyMode)
+            {
+                noTroubleChance = 0.3;
+            }
             printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
-            int goldDiff = (int)(Math.random() * 10) + 1;
+            int goldDiff = (int)((int)(Math.random() * 10) + 1 * TreasureHunter.goldMulti);
             if (TreasureHunter.cheatMode)
             {
                 goldDiff = 100;
@@ -138,6 +147,13 @@ public class Town
                 printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
             }
+        }
+    }
+    public void lookForTroubleTest()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+
         }
     }
 
@@ -285,6 +301,10 @@ public class Town
                 int dice1 = (int)(Math.random() * 6) + 1;
                 int dice2 = (int)(Math.random() * 6) + 1;
                 int diceTotal = dice1 + dice2;
+                if (TreasureHunter.cheatMode)
+                {
+                    diceTotal = userDNum;
+                }
                 if (userDNum == diceTotal)
                 {
                     goldWon += inputNum * 2;
