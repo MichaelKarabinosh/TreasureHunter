@@ -72,7 +72,7 @@ public class TreasureHunter
         if (hard.equals("e"))
         {
             easyMode = true;
-            goldMulti = 2;
+            goldMulti = 3;
         }
     }
 

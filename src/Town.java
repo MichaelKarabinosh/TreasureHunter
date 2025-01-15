@@ -14,6 +14,7 @@ public class Town
     private boolean toughTown;
     private boolean searchedForTreasure;
     private int goldWon;
+    private int goldDiff;
 
 
     //Constructor
@@ -128,7 +129,7 @@ public class Town
                 noTroubleChance = 0.3;
             }
             printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
-            int goldDiff = (int)((int)(Math.random() * 10) + 1 * TreasureHunter.goldMulti);
+            goldDiff = (int)((int)(Math.random() * 10) + 1 * TreasureHunter.goldMulti);
             if (TreasureHunter.cheatMode)
             {
                 goldDiff = 100;
@@ -152,14 +153,25 @@ public class Town
     public void lookForTroubleTest()
     {
         int brawlsWon = 0;
+        int brawls = 100;
+        int goldWonTotal = 0;
         for (int i = 0; i < 100; i++)
         {
             lookForTrouble();
             if (printMessage.contains("mettle"))
             {
                 brawlsWon++;
+                goldWonTotal += goldDiff;
         }
+            if (printMessage.contains("couldn't"))
+            {
+                brawls--;
+            }
+
         }
+        System.out.println("brawls won: " + brawlsWon + " out of " + brawls);
+        System.out.println("brawls lost: " +  (brawls - brawlsWon) + " out of " + brawls);
+        System.out.println("gold won average: " + (double) goldWonTotal / brawlsWon);
     }
 
     public String toString()
