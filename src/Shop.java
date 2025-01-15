@@ -55,17 +55,34 @@ public class Shop
             System.out.println("Welcome to the shop! We have the finest wares in town.");
             System.out.println("Currently we have the following items:");
             System.out.println(inventory());
-            System.out.print("What're you lookin' to buy? ");
+            System.out.print("What're you lookin' to buy?");
             String itemChar = scanner.nextLine();
-            String item = itemMapper(itemChar);
-            int cost = checkMarketPrice(item, true);
-            if (cost == 0)
+            String [] items = itemChar.split(" ");
+            String itemList = "";
+            int multiCost = 0;
+            if (items.length > 1)
             {
-                System.out.println("We ain't got none of those.");
+                for (String item: items)
+                {
+
+                    multiCost += checkMarketPrice(itemMapper(item), true);
+                    itemList += item + "and a";
+                }
             }
+                String item = itemMapper(itemChar);
+                int cost = checkMarketPrice(item, true);
+                if (cost == 0) {
+                    System.out.println("We ain't got none of those.");
+                }
+
             else
             {
-                System.out.print("A " + item.toLowerCase() + " will cost you " + cost + " gold. Buy it (y/n)? ");
+                if (items.length == 1) {
+                    System.out.print("A " + item.toLowerCase() + " will cost you " + cost + " gold. Buy it (y/n)? ");
+                }
+                else {
+                    System.out.println("A" + itemList +  " will cost you " + multiCost + " gold. Buy this (y/n)? ");
+                }
                 String option = scanner.nextLine();
 
                 if (option.equals("y") || option.equals("Y"))
